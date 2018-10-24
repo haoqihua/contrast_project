@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map { height: 100%; width:100%;}
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .fill{height: 70%;}
+      .row { 
+           height: 50%;
+      }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/grid_css.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+    <div class="container fill">
+      
+      
+      
+      
+      <div class="row">
+        <div class="col-2">
+          
+          <div class="row">
+            <div class="col">
+              <div id="load_n_locations">
+                <button type="button" type="button" class="btn btn-primary" v-on:click="load_n_locations">Load Locations on Map</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col">
+              <div id="search">
+                Enter IP Address:<br>
+                <input type="text" id="IP_addr" name="IP_addr" v-model="IP_addr"><br>
+                <button type="button" type="button" class="btn btn-primary" v-on:click="search_IP">click</button>
+                <span>IP: [[ IP_addr ]]</span>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          
+          
+        </div>
+        <div class="col-10">
+          <div id="map"></div>
+        </div>
+      </div>
+      
+    
+      
+      <div class="row">
+            <div class="col">
+              
+              <div id="demo">
+                
+                <demo-grid
+                  :data="gridData"
+                  :columns="gridColumns"
+                  :filter-key="searchQuery">
+                </demo-grid>
+              </div>
+            </div>
+    
+      <div>
+      
+      
+      
+    </div>
+    
+    
+     
+    </body>
+    <!-- component template for grid -->
+    <script type="text/x-template" id="grid-template">
+      <table>
+        <thead>
+          <tr>
+            <th v-for="key in columns"
+              @click="sortBy(key)"
+              :class="{ active: sortKey == key }">
+              <% key | capitalize %>
+              <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="entry in filteredData">
+            <td v-for="key in columns">
+              <%entry[key]%>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </script>
+    
+    <!-- demo root element -->
+    
+    
+      
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="../static/map.js"></script>
+    <script src="../static/controller.js"></script>
+    
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQWqjyum_NTSNN8UonZcPVg1dZhwUoqnE&callback=initMap">
+    </script>
+  
+</html>
