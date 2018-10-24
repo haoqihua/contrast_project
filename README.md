@@ -18,20 +18,20 @@
 ###### Files:
 ```html
 Service Layer:
-            main.py:
+        main.py:
                 First component of service layer, handles all requests from UI.
-            data.py:
+        data.py:
                 Handles all data operations.
-    UI:
+UI:
         templates/map.html
-            Contains the map.
+                Contains the map.
         static/map.js
-            Initialize Google Map
+                Initialize Google Map
         static/controller.js
-            Main component, receives data from service layer
-            Interact with Google Map API
-            Handles Grid Control
-            Form validations
+                Main component, receives data from service layer
+                Interact with Google Map API
+                Handles Grid Control
+                Form validations
 ```
 Technologies:
 Python3, Flask Framework, JavaScript, Vue.JS
